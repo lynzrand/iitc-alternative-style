@@ -2,7 +2,7 @@
 // @id rynco.iitc-alt-style
 // @name Alternative Portal Style
 // @category Misc
-// @version 0.0.1
+// @version 0.0.2
 // @namespace https://tempuri.org/iitc/hello
 // @description 
 // @include https://intel.ingress.com/intel*
@@ -32,13 +32,22 @@ function wrapper(plugin_info) {
     // patch window.COLORS to use our own colors
     window.COLORS = ['#9F7E75', '#726DD9', '#55D152'] // neutral, res, enl
 
+    window.portalMarkerScale = function () {
+      var zoom = map.getZoom();
+      if (L.Browser.mobile)
+        // smaller scale on mobile
+        return zoom >= 16 ? 0.8 : zoom >= 11 ? 0.6 : zoom >= 8 ? 0.5 : 0.4;
+      else
+        return zoom >= 14 ? 1 : zoom >= 11 ? 0.8 : zoom >= 8 ? 0.65 : 0.5;
+    }
+
     // So yes, we are monkey-patching a stock function.
     window.getMarkerStyleOptions = function (details) {
       var scale = window.portalMarkerScale();
 
       //   portal level      0  1  2  3  4  5  6  7  8
       var LEVEL_TO_WEIGHT = [5, 6, 7, 8, 9, 10, 11, 13, 15];
-      var LEVEL_TO_RADIUS = [3, 3, 4, 4, 5, 6, 7, 8, 10];
+      var LEVEL_TO_RADIUS = [3, 3, 3, 3, 4, 4, 5, 6, 7];
 
       var level = Math.floor(details.level || 0);
 
