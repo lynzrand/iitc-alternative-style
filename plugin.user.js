@@ -35,8 +35,8 @@ function wrapper(plugin_info) {
     window.portalMarkerScale = function () {
       var zoom = map.getZoom();
       if (L.Browser.mobile)
-        // smaller scale on mobile
-        return zoom >= 14 ? 1.5 : zoom >= 11 ? 1.1 : zoom >= 8 ? 0.8 : 0.6;
+        // since we make portals way smaller, we actually need a larger scale
+        return zoom >= 14 ? 2 : zoom >= 11 ? 1.7 : zoom >= 8 ? 1.5 : 1;
       else
         return zoom >= 14 ? 1 : zoom >= 11 ? 0.8 : zoom >= 8 ? 0.65 : 0.5;
     }
@@ -49,10 +49,14 @@ function wrapper(plugin_info) {
       var LEVEL_TO_WEIGHT = [5, 6, 7, 8, 9, 10, 11, 13, 15];
       var LEVEL_TO_RADIUS = [3, 3, 3, 3, 4, 4, 5, 6, 7];
 
+
+
       var level = Math.floor(details.level || 0);
 
       var lvlWeight = LEVEL_TO_WEIGHT[level] * Math.sqrt(scale);
       var lvlRadius = LEVEL_TO_RADIUS[level] * scale;
+      if (L.Browser.mobile)
+        lvlWeight *= 1.5;
 
       var dashArray = null;
       // thinner and dashed outline for placeholder portals
