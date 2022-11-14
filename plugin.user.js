@@ -36,7 +36,7 @@ function wrapper(plugin_info) {
       var zoom = map.getZoom();
       if (L.Browser.mobile)
         // smaller scale on mobile
-        return zoom >= 16 ? 0.8 : zoom >= 11 ? 0.6 : zoom >= 8 ? 0.5 : 0.4;
+        return zoom >= 14 ? 1.1 : zoom >= 11 ? 0.9 : zoom >= 8 ? 0.7 : 0.5;
       else
         return zoom >= 14 ? 1 : zoom >= 11 ? 0.8 : zoom >= 8 ? 0.65 : 0.5;
     }
