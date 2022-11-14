@@ -36,7 +36,7 @@ function wrapper(plugin_info) {
       var zoom = map.getZoom();
       if (L.Browser.mobile)
         // since we make portals way smaller, we actually need a larger scale
-        return zoom >= 14 ? 2 : zoom >= 11 ? 1.7 : zoom >= 8 ? 1.5 : 1;
+        return zoom >= 14 ? 1.5 : zoom >= 11 ? 0.9 : zoom >= 8 ? 0.8 : 0.7;
       else
         return zoom >= 14 ? 1 : zoom >= 11 ? 0.8 : zoom >= 8 ? 0.65 : 0.5;
     }
@@ -53,8 +53,8 @@ function wrapper(plugin_info) {
 
       var level = Math.floor(details.level || 0);
 
-      var lvlWeight = LEVEL_TO_WEIGHT[level] * Math.sqrt(scale);
-      var lvlRadius = LEVEL_TO_RADIUS[level] * scale;
+      var lvlWeight = LEVEL_TO_WEIGHT[level] * scale;
+      var lvlRadius = LEVEL_TO_RADIUS[level] * Math.sqrt(scale);
       if (L.Browser.mobile)
         lvlWeight *= 1.5;
 
