@@ -30,7 +30,7 @@ function wrapper(plugin_info) {
   // The entry point for this plugin.
   function setup() {
     // patch window.COLORS to use our own colors
-    window.COLORS = ['#9F7E75', '#726DD9', '#55D152'] // neutral, res, enl
+    window.COLORS = ['#B2AEB7', '#726DD9', '#55D152', '#F24A5F'] // neutral, res, enl, mac
 
     window.portalMarkerScale = function () {
       var zoom = map.getZoom();
@@ -54,9 +54,8 @@ function wrapper(plugin_info) {
       var level = Math.floor(details.level || 0);
 
       var lvlWeight = LEVEL_TO_WEIGHT[level] * scale;
-      var lvlRadius = LEVEL_TO_RADIUS[level] * Math.sqrt(scale);
-      if (L.Browser.mobile)
-        lvlWeight *= 1.5;
+      var lvlRadius = LEVEL_TO_RADIUS[level] * scale;
+
 
       var dashArray = null;
       // thinner and dashed outline for placeholder portals
