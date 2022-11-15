@@ -2,8 +2,9 @@
 // @id rynco.iitc-alt-style
 // @name Alternative Portal Style
 // @category Misc
-// @version 0.0.2
-// @namespace https://tempuri.org/iitc/hello
+// @version 0.0.3
+// @namespace https://github.com/lynzrand/iitc-alternative-style
+// @updateURL https://github.com/lynzrand/iitc-alternative-style/raw/master/plugin.user.js
 // @description 
 // @include https://intel.ingress.com/intel*
 // @match https://intel.ingress.com/intel*
@@ -18,14 +19,12 @@ function wrapper(plugin_info) {
   // and other plugins assume the same.
   if (typeof window.plugin !== 'function') window.plugin = function () { };
 
-  // Name of the IITC build for first-party plugins
-  plugin_info.buildName = 'hello';
 
   // Datetime-derived version of the plugin
-  plugin_info.dateTimeVersion = '20221114000000';
+  plugin_info.dateTimeVersion = '20221115000000';
 
   // ID/name of the plugin
-  plugin_info.pluginId = 'hello';
+  plugin_info.pluginId = 'iitc-alt-style';
 
   // The entry point for this plugin.
   function setup() {
@@ -58,9 +57,9 @@ function wrapper(plugin_info) {
 
 
       var dashArray = null;
-      // thinner and dashed outline for placeholder portals
+      // no outline for placeholder portals
       if (details.team != TEAM_NONE && level == 0) {
-        lvlWeight = 1;
+        lvlWeight = 0;
       }
 
       var options = {
